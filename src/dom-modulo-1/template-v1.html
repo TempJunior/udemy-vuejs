@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <p>{{ titulo }}</p><!--Podemos usar as variaveis reativas aqui interpolando-as -->
+
+    <button v-on:click="mostrarNome">Mostra o nome</button>
+
+    <button v-on:click="alterarTitulo">Atualizar Titulo</button>
+    <button v-on:click="limparTudo">Limpar tudo</button>
+
+    <p>{{usuario.nome}}</p>
+    <p>{{usuario.idade}}</p>
+
+</div>
+</body>
+</html>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: { //Data guarda variaveis reativas. Podemos colocar qualquer tipo dentro dela.
+            titulo: 'Meu Titulo',
+            usuario: {
+                nome: '',
+                idade: ''
+            }
+        },
+        methods: {
+            alterarTitulo() {
+                setTimeout(() => {
+                    this.titulo = 'Meu Titulo atualizado!';
+                }, 2000)
+            },
+            mostrarNome(){
+                this.usuario.nome = 'Juninhu';
+                this.usuario.idade = '18';
+            },
+            limparTudo(){
+                this.usuario.nome = '';
+                this.usuario.idade = '';
+            }
+        }
+    })
+</script>
+

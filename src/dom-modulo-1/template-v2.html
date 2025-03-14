@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+    <p>{{ titulo }}</p><!--Podemos usar as variaveis reativas aqui interpolando-as -->
+
+    <!--Tudo o que vier de metodos ou atributos (atributos são o que estão no metodo 'data')
+    precisa ser devolvido como String. Padrão textual do HTML.-->
+</div>
+</body>
+</html>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: { //Data guarda variaveis(são atributos da classe) reativas. Podemos colocar qualquer tipo dentro dela.
+            titulo: 'Meu Titulo',
+            },
+        methods: {
+
+        }
+    })
+</script>
+
