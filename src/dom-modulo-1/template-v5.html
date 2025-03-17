@@ -8,7 +8,8 @@
 <body>
 
 <div id="app">
-    <h1>{{ titulo }}</h1><!--Podemos usar as variaveis reativas aqui interpolando-as -->
+    <!--O V-ONCE serve que seja renderizada apenas uma unica vez mesmo que haja mudança no atributo.-->
+    <h1 v-once>{{ titulo }}</h1><!--Podemos usar as variaveis reativas aqui interpolando-as -->
 
     <!--Tudo o que vier de metodos ou atributos (atributos são o que estão no metodo 'data')
     precisa ser devolvido como String. Padrão textual do HTML.-->
@@ -17,6 +18,12 @@
                              precisa ser chamado como metodo no double
                              mustache. E tambem precisa devolver uma String,
                              pois HTML é apenas para renderizar textos.-->
+
+    <a v-bind:href="link">Google</a><!--Propriedades de atributos de Tags HTML.
+    Com V-BIND:ATRIBUTOHTML o Vue interpreta o que esta nas instancias do Script.
+    Ele atribui aquele valor de Link ao atributo do HTML. Como se fosse a interpolação do mustache.-->
+
+    
 </div>
 </body>
 </html>
@@ -26,10 +33,13 @@
         el: '#app',
         data: { //Data guarda variaveis(são atributos da classe) reativas. Podemos colocar qualquer tipo dentro dela.
             titulo: 'Começando em VueJS.',
+            link: 'https://www.google.com.br',
             },
         methods: {
             saudacao: function () {
-                return 'Olá friends. Deu certo o seu metodo! Happy Happy';
+                this.titulo = 'Bom dia Devs.'
+                return this.titulo //Tudo que é um atributo ou que esta declarado
+                                    //em uma instancia do vue é acessado usando o 'THIS', tanto atributos quanto funções.
             }
         }
     })

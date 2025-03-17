@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <h1>{{ titulo }}</h1>
+
+        <p>{{ contador }}</p>
+        <p>Contador personalizado: {{contadorPersonalizado}}</p>
+        <!--Interceptando um evento de Click.-->
+        <!--V-ON é a diretiva que escuta o evento que vem na sequencia.
+            Ele executa uma função e atualiza as variaveis.-->
+        <button type="button" v-on:click="somar">Somar</button>
+        <button type="button" v-on:click="parametrosPersonalizados(2)">Somar personalizado</button>
+        <button type="button" v-on:click="limpar">Limpar</button>
+
+        <!--Aqui ele executa um evento do browser de quando o mouse se move.-->
+        <h1 v-on:mousemove="capturaEixos">EIXOS - X: {{x}} Y: {{y}}</h1>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                titulo: 'Contador',
+                contador: 0,
+                contadorPersonalizado: 0,
+                x: 0,
+                y: 0,
+            },
+            methods: {
+                somar: function () {
+                    this.contador++;
+                },
+                limpar: function () {
+                    this.contador = 0;
+                    this.contadorPersonalizado=0;
+                },
+                capturaEixos: function (event) {//Pegando eventos diretamente do browser
+                    this.x = event.clientX;
+                    this.y = event.clientY;
+                },
+                //Para receber um parametro personalizado
+                parametrosPersonalizados: function (passos) {
+                    this.contadorPersonalizado += passos;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

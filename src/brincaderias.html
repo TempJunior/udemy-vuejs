@@ -8,7 +8,19 @@
 <body>
 
 <div id="app">
-    <p>{{ titulo }}</p><!--Podemos usar as variaveis reativas aqui interpolando-as -->
+    <h1>
+        <strong>
+            {{ titulo }}
+        </strong></h1><!--Podemos usar as variaveis reativas aqui interpolando-as -->
+
+    <h3>
+        <strong>
+            Atualizar o titulo
+        </strong>
+        </h3>
+
+    <input type="text" v-model="novoTitle"><!--Usando o two-way databind para sincronizar a variavel-->
+    <button v-on:click="atualizarTitulo">Mudar titulo</button>
 
     <button v-on:click="mostrarNome">Mostra o nome</button>
 
@@ -27,6 +39,7 @@
         el: '#app',
         data: { //Data guarda variaveis reativas. Podemos colocar qualquer tipo dentro dela.
             titulo: 'Meu Titulo',
+            novoTitle: '',//Usei essa variavel para receber um novo titulo e substituir o titulo atual
             usuario: {
                 nome: '',
                 idade: ''
@@ -46,6 +59,10 @@
                 this.usuario.nome = '';
                 this.usuario.idade = '';
                 this.titulo = 'Meu Titulo';
+            },
+            atualizarTitulo(){
+                this.titulo = this.novoTitle;
+                this.novoTitle = '';
             }
         }
     })

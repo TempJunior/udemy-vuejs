@@ -29,7 +29,8 @@
             },
         methods: {
             saudacao: function () {
-                return 'Olá friends. Deu certo o seu metodo! Happy Happy';
+                return this.titulo //Tudo que é um atributo ou que esta declarado
+                                    //em uma instancia do vue é acessado usando o 'THIS', tanto atributos quanto funções.
             }
         }
     })

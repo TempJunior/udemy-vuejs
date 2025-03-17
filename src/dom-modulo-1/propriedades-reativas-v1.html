@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h1>{{title}}</h1>
+
+  <!--Sobre two-way data bind.
+
+      Com o V-MODEL podemos fazer o two-way databind. Onde ao escrever no campo de input
+      modificamos a variavel reativa dentro de 'data' e se modificarmos tambem
+      a variavel, modificamos o input ou qualquer outra propriedade HTML.-->
+  <input type="text" v-model="title">
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      title: 'Vamos ser bons em Vue.js! ',
+    }
+  })
+</script>
+</body>
+</html>

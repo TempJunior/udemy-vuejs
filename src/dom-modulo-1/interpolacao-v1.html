@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <title>Title</title>
+</head>
+<body>
+
+<div id="app">
+  <h1>{{message}}</h1>
+
+
+  <p>
+    {{contador}}
+  </p>
+
+  <!--Podemos fazer operações basicas dentro dos mustaches.
+  Por exemplo operção ternaria.-->
+  <p>
+    {{contador > 10 ? 'Contador maior que 10' : 'Contador menor que 10'}}
+  </p>
+
+  <button v-on:click="count(1)">Contar</button>
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue.js!',
+      contador: 0
+    },
+    methods: {
+      count: function (number) {
+        if (number > 0 || this.contador > 0) {
+          this.contador * number;
+        }
+        this.contador++;
+      }
+    }
+  })
+</script>
+</body>
+</html>
