@@ -2,31 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
-  <title>Title</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>  <title>Title</title>
 </head>
 <body>
 
 <div id="app">
-  <h1>{{count}}</h1>
-    <p>{{result}}</p>
+  <h1>{{count}} | {{count2}}</h1>
+    <p>{{resultado}}</p>
 
   <button v-on:click="aumentar">Aumentar</button>
+  <button v-on:click="count2++">Aumentar2</button>
+  <button v-on:click="diminuir">Diminuir</button>
 </div>
 
 <script>
   new Vue({
     el: '#app',
     data: {
-        count : 0,
-        result: 0
+        count: 0,
+        count2: 0
+    },
+    computed: {
+      resultado() {
+        console.log('Metodo chamado...');
+        return this.count >= 5 ?
+                `Maior ou igual a 5` : 'Resultado menor que 5';
+      }
     },
       methods: {
         aumentar() {
             this.count ++;
-            this.result = this.count >= 15 ?
-            'Maior ou igual a 15' : 'Resultado menor que 15';
-        }
+        },
+        diminuir() {
+          this.count --;
+        },
+
       }
   })
 </script>

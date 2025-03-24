@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+
+        <p>Full name: {{fullName}}</p>
+
+        <h1>Tasks em aberto</h1>
+        <div
+        v-for="todo in pendentes"
+        :key="todo.id">
+            {{todo.title}}
+        </div>
+
+        <h1>Tasks completas</h1>
+        <div
+                v-for="todo in completas"
+                :key="todo.id">
+            {{todo.title}}
+        </div>
+
+        <h1>All Tasks</h1>
+        <div v-for="todo in tasks" :key="todo.id">
+            <input
+                    type="checkbox"
+                    v-model="todo.completed">
+            {{todo.title}}
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                user: {
+                    firstName: 'Junior',
+                    lastName: 'Oliveira',
+                },
+
+            "tasks": [
+            {
+                "id": 1,
+                "title": "Finalizar o design do site",
+                "completed": false
+            },
+            {
+                "id": 2,
+                "title": "Revisar código da API",
+                "completed": false
+            },
+            {
+                "id": 3,
+                "title": "Escrever documentação",
+                "completed": false
+            },
+            {
+                "id": 4,
+                "title": "Testar integração com frontend",
+                "completed": true
+            }
+        ]
+
+        },
+            computed: {
+                fullName(){
+                    return `${this.user.firstName} ${this.user.lastName}`
+                },
+                pendentes(){
+                    return this.tasks.filter(task => !task.completed);
+                },
+                completas(){
+                    return this.tasks.filter(task => task.completed);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

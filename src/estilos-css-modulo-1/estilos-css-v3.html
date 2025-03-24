@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+  <title>Title</title>
+</head>
+<body>
+
+<style>
+  .caixas{
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .demo{
+    width: 100px;
+    height: 100px;
+    background-color: gray;
+  }
+
+  .c1{
+    background-color: red;
+  }
+
+  .c2{
+    background-color: blue;
+  }
+
+  .c3{
+    background-color: green;
+  }
+</style>
+
+<div id="app">
+  <div class="caixas">
+    <div class="demo" :style="{'background-color' : cor}"></div>
+    <div class="demo" :style="meuEstilos"></div>
+    <div class="demo"></div>
+  </div>
+  <input type="text" v-model="cor">
+  <input type="text" v-model="largura">
+
+
+</div>
+
+<script>
+  new Vue({
+    el: '#app',
+    data: {
+      cor: 'red',
+      largura: 100
+    },
+    computed: {
+      meuEstilos() {
+        return{
+          backgroundColor: this.cor,
+          width: `${this.largura}px`,
+        }
+        }
+    }
+  })
+</script>
+</body>
+</html>
