@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://kit.fontawesome.com/8e2900cc88.js" crossorigin="anonymous"></script>
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <header class="sticky bg-[#6D4C41]">
+        <nav class="flex items-center p-8 justify-between">
+            <i class="fa-solid fa-book-bible text-3xl text-white"></i>
+            <div>
+                <input type="text" placeholder="Pesquise seu filme"
+                       class=" border border-gray-600 rounded-lg bg-white px-4 py-2 pr-10 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-amber-800 transition duration-200 ease-in-out">
+                <button class="cursor-pointer fa-solid fa-magnifying-glass absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400"
+                ></button>
+            </div>
+        </nav>
+    </header>
+
+    <main class="w-full">
+        <section class="z-20">
+            <ul class="flex px-32 py-6 w-full" v-for="filme in filmes" :key="filme.id">
+                <li class="flex-1"> <strong class="text-black">Filme: </strong>{{ filme.título }} </li>
+                <li class="flex-1"> <strong class="text-black">Ano de lançamento: </strong>{{ filme.ano }} </li>
+                <li class="flex-1"> <strong class="text-black">Gênero: </strong>{{ filme.gênero }} </li>
+                <button @click="filme.favorito ? 'fa-light fa-heart' : 'fa-solid fa-heart'" class="fa-solid fa-heart cursor-pointer text-2xl"></button>
+            </ul>
+        </section>
+    </main>
+</div>
+
+
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            filmes: [
+                {id: 1, título: 'The Shawshank Redemption', ano: 1994, gênero: 'Drama', favorito: true},
+                {id: 2, título: 'The Godfather', ano: 1972, gênero: 'Crime', favorito: false},
+                {id: 3, título: 'The Dark Knight', ano: 2008, gênero: 'Ação', favorito: true},
+                {id: 4, título: 'Pulp Fiction', ano: 1994, gênero: 'Crime', favorito: false},
+                {id: 5, título: 'Forrest Gump', ano: 1994, gênero: 'Drama', favorito: true},
+                {id: 6, título: 'Inception', ano: 2010, gênero: 'Sci-Fi', favorito: false},
+                {id: 7, título: 'Fight Club', ano: 1999, gênero: 'Drama', favorito: true},
+                {id: 8, título: 'The Matrix', ano: 1999, gênero: 'Sci-Fi', favorito: false},
+                {id: 9, título: 'Interstellar', ano: 2014, gênero: 'Sci-Fi', favorito: true},
+                {id: 10, título: 'Parasite', ano: 2019, gênero: 'Thriller', favorito: false},
+                {id: 11, título: 'Joker', ano: 2019, gênero: 'Drama', favorito: true},
+                {id: 12, título: 'Spirited Away', ano: 2001, gênero: 'Animação', favorito: false},
+                {id: 13, título: 'Avatar', ano: 2009, gênero: 'Aventura', favorito: false},
+                {id: 14, título: 'Titanic', ano: 1997, gênero: 'Romance', favorito: false},
+                {id: 15, título: 'Gladiator', ano: 2000, gênero: 'Ação', favorito: false}
+            ],
+        }
+    })
+</script>
+</html>
