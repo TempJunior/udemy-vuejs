@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- jsDelivr -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
+    />
+
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <header class="flex justify-end items-center w-full h-full bg-gradient-to-r from-gray-900 to-black p-8">
+        <input placeholder="Pesquise seu filme" type="text" class="outline-none border-3 bg-white border-red-900">
+    </header>
+
+    <main class="bg-gradient-to-r to-gray-400 h-full">
+        <section class="">
+            <ul class="flex gap-6 p-4" v-for="filme in filmes" :key="filme.id">
+                <li class="w-full">{{filme.título}}</li>
+                <li class="w-full">{{filme.gênero}}</li>
+                <li class="w-full">{{filme.ano}}</li>
+                <button @click="toggleFavorites(filme)" class="fa-solid fa-heart text-2xl cursor-pointer transform transition-transform duration-200 ease-in-out hover:-translate-y-1"
+                :class="{'text-red-800' : filme.favorito, 'text-white' : !filme.favorito}"></button>
+            </ul>
+        </section>
+    </main>
+</div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            filmes: [
+                {id: 1, título: 'The Shawshank Redemption', ano: 1994, gênero: 'Drama', favorito: true},
+                {id: 2, título: 'The Godfather', ano: 1972, gênero: 'Crime', favorito: false},
+                {id: 3, título: 'The Dark Knight', ano: 2008, gênero: 'Ação', favorito: true},
+                {id: 4, título: 'Pulp Fiction', ano: 1994, gênero: 'Crime', favorito: false},
+                {id: 5, título: 'Forrest Gump', ano: 1994, gênero: 'Drama', favorito: true},
+                {id: 6, título: 'Inception', ano: 2010, gênero: 'Sci-Fi', favorito: false},
+                {id: 7, título: 'Fight Club', ano: 1999, gênero: 'Drama', favorito: true},
+                {id: 8, título: 'The Matrix', ano: 1999, gênero: 'Sci-Fi', favorito: false},
+                {id: 9, título: 'Interstellar', ano: 2014, gênero: 'Sci-Fi', favorito: true},
+                {id: 10, título: 'Parasite', ano: 2019, gênero: 'Thriller', favorito: false},
+                {id: 11, título: 'Joker', ano: 2019, gênero: 'Drama', favorito: true},
+                {id: 12, título: 'Spirited Away', ano: 2001, gênero: 'Animação', favorito: false},
+                {id: 13, título: 'Avatar', ano: 2009, gênero: 'Aventura', favorito: false},
+                {id: 14, título: 'Titanic', ano: 1997, gênero: 'Romance', favorito: false},
+                {id: 15, título: 'Gladiator', ano: 2000, gênero: 'Ação', favorito: false}
+            ],
+
+        },
+        methods: {
+            toggleFavorites: function (filme) {
+                filme.favorito = !filme.favorito;
+            }
+        }
+    })
+</script>
+</html>
