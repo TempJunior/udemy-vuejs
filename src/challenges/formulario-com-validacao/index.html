@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Formulario</title>
+</head>
+<body>
+<div id="app">
+    <main class="p-6">
+        <section class="flex flex-col justify-center items-center">
+            <form action="" class="flex flex-col bg-gray-200 p-4">
+                <h1 class="text-center py-2">Digite seus dados</h1>
+                <fieldset class="flex flex-col p-4 gap-2">
+                    <label for="login">Usuario</label>
+                    <input @blur="touched = true" v-model="usuario" type="text" id="login" class="p-2 border-2 border-red-400" placeholder="Usuario">
+                    <p v-if="touched  && !usuario" class="text-red-900">O campo precisa ser preencido</p>
+
+                    <label for="senha">Senha</label>
+                    <input type="password" id="senha" class="p-2 border-2 border-red-400" placeholder="Digite sua senha">
+                </fieldset>
+                <button type="submit" class="border-1 rounded-md bg-red-900 text-white p-2 cursor-pointer">Enviar</button>
+            </form>
+        </section>
+    </main>
+</div>
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            usuario: '',
+            senha: '',
+            touched: false,
+        },
+    })
+</script>
+</html>

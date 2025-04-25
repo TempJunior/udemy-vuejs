@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <div v-once class="flex gap-4">
+            <h1>{{appName}}</h1>
+            <span>versão {{appVersion}}</span>
+        </div>
+
+        <div class="flex gap-2">
+            <input type="text" v-model="appVersion" class="border">
+            <span>Versão atualizada: {{ appVersion }}</span>
+        </div>
+
+    </div>
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                appName: 'VueJs - Express',
+                appVersion: '1.0.0',
+            },
+        })
+    </script>
+</body>
+</html>

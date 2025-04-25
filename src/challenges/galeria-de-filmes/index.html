@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- jsDelivr -->
     <link
             rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css"
@@ -12,18 +11,23 @@
 
     <title>Title</title>
 </head>
-<body>
+<body CLASS="bg-gradient-to-r to-gray-400">
 <div id="app">
     <header class="flex justify-end items-center w-full h-full bg-gradient-to-r from-gray-900 to-black p-8">
-        <input placeholder="Pesquise seu filme" type="text" class="outline-none border-3 bg-white border-red-900">
+        <input v-model="searchTerm" placeholder="Pesquise seu filme" type="text" class="outline-none border-3 bg-white border-red-900">
     </header>
 
-    <main class="bg-gradient-to-r to-gray-400 h-full">
-        <section class="">
-            <ul class="flex gap-6 p-4" v-for="filme in filmes" :key="filme.id">
-                <li class="w-full">{{filme.título}}</li>
-                <li class="w-full">{{filme.gênero}}</li>
-                <li class="w-full">{{filme.ano}}</li>
+    <main class="h-full">
+        <div class="flex p-4 gap-2">
+            <label for="favoritos">Filmes favoritos</label>
+            <input type="checkbox" id="favoritos" v-model="showFavoriteOnly">
+        </div>
+
+        <section v-for="filme in filteredMovies" :key="filme.id">
+            <ul class="flex gap-6 p-4" >
+                <li class="w-full bg-gradient-to-l from-gray-300 to-red-600 py-4 pl-2"><strong>Titulo: </strong>{{filme.titulo}}</li>
+                <li class="w-full bg-gradient-to-l from-gray-300 to-blue-600 py-4 pl-2"><strong class="text-black">Gênero: </strong>{{filme.genero}}</li>
+                <li class="w-full bg-gradient-to-l from-gray-300 to-indigo-600 py-4 pl-2"><strong>Ano de lançamento: </strong>{{filme.ano}}</li>
                 <button @click="toggleFavorites(filme)" class="fa-solid fa-heart text-2xl cursor-pointer transform transition-transform duration-200 ease-in-out hover:-translate-y-1"
                 :class="{'text-red-800' : filme.favorito, 'text-white' : !filme.favorito}"></button>
             </ul>
@@ -36,27 +40,42 @@
         el: '#app',
         data: {
             filmes: [
-                {id: 1, título: 'The Shawshank Redemption', ano: 1994, gênero: 'Drama', favorito: true},
-                {id: 2, título: 'The Godfather', ano: 1972, gênero: 'Crime', favorito: false},
-                {id: 3, título: 'The Dark Knight', ano: 2008, gênero: 'Ação', favorito: true},
-                {id: 4, título: 'Pulp Fiction', ano: 1994, gênero: 'Crime', favorito: false},
-                {id: 5, título: 'Forrest Gump', ano: 1994, gênero: 'Drama', favorito: true},
-                {id: 6, título: 'Inception', ano: 2010, gênero: 'Sci-Fi', favorito: false},
-                {id: 7, título: 'Fight Club', ano: 1999, gênero: 'Drama', favorito: true},
-                {id: 8, título: 'The Matrix', ano: 1999, gênero: 'Sci-Fi', favorito: false},
-                {id: 9, título: 'Interstellar', ano: 2014, gênero: 'Sci-Fi', favorito: true},
-                {id: 10, título: 'Parasite', ano: 2019, gênero: 'Thriller', favorito: false},
-                {id: 11, título: 'Joker', ano: 2019, gênero: 'Drama', favorito: true},
-                {id: 12, título: 'Spirited Away', ano: 2001, gênero: 'Animação', favorito: false},
-                {id: 13, título: 'Avatar', ano: 2009, gênero: 'Aventura', favorito: false},
-                {id: 14, título: 'Titanic', ano: 1997, gênero: 'Romance', favorito: false},
-                {id: 15, título: 'Gladiator', ano: 2000, gênero: 'Ação', favorito: false}
+                { id: 1,  titulo: 'The Shawshank Redemption', ano: 1994, genero: 'Drama',         favorito: true  },
+                { id: 2,  titulo: 'The Godfather',            ano: 1972, genero: 'Crime',         favorito: false },
+                { id: 3,  titulo: 'The Dark Knight',          ano: 2008, genero: 'Acao',          favorito: true  },
+                { id: 4,  titulo: 'Pulp Fiction',             ano: 1994, genero: 'Crime',         favorito: false },
+                { id: 5,  titulo: 'Forrest Gump',             ano: 1994, genero: 'Drama',         favorito: true  },
+                { id: 6,  titulo: 'Inception',                ano: 2010, genero: 'Sci-Fi',        favorito: false },
+                { id: 7,  titulo: 'Fight Club',               ano: 1999, genero: 'Drama',         favorito: true  },
+                { id: 8,  titulo: 'The Matrix',               ano: 1999, genero: 'Sci-Fi',        favorito: false },
+                { id: 9,  titulo: 'Interstellar',             ano: 2014, genero: 'Sci-Fi',        favorito: true  },
+                { id: 10, titulo: 'Parasite',                 ano: 2019, genero: 'Thriller',      favorito: false },
+                { id: 11, titulo: 'Joker',                    ano: 2019, genero: 'Drama',         favorito: true  },
+                { id: 12, titulo: 'Spirited Away',            ano: 2001, genero: 'Animacao',      favorito: false },
+                { id: 13, titulo: 'Avatar',                   ano: 2009, genero: 'Aventura',      favorito: false },
+                { id: 14, titulo: 'Titanic',                  ano: 1997, genero: 'Romance',       favorito: false },
+                { id: 15, titulo: 'Gladiator',                ano: 2000, genero: 'Acao',          favorito: false }
             ],
-
+            searchTerm: '',
+            showFavoriteOnly: false
         },
         methods: {
             toggleFavorites: function (filme) {
                 filme.favorito = !filme.favorito;
+            }
+        },
+        computed:{
+            filteredMovies(){
+
+                return this.filmes
+                    .filter(f =>{
+                        const termo = this.searchTerm.toLowerCase()
+                        return(
+                            f.titulo.toLowerCase().includes(termo) ||
+                            f.genero.toLowerCase().includes(termo)
+                        )
+                    })
+                    .filter(f => this.showFavoriteOnly ? f.favorito : true)
             }
         }
     })
