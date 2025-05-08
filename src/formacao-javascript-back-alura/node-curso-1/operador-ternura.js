@@ -13,4 +13,11 @@ const retornaFeioOuBonito = verificacaoDeLindeza ? 'Você é um gatão!' :
 
 console.log(retornaFeioOuBonito)
 
+const numeroParesOuImpar = Math.random().toFixed(2);
+const valorDoPar = numeroParesOuImpar % 2 === 0 ? 'Numero par' : 'Numero Impar';
+
+console.log(`O numero ${numeroParesOuImpar} é ${valorDoPar}`)
+
+
+
 

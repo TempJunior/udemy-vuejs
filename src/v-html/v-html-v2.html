@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.16/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div id="app">
+        <div>
+            Gerando HTML condicional e direto do JS!
+            <p v-if="" v-html="conteudo">
+            </p>
+
+            <div v-for="cont in dados" :key="cont.id">
+                <p v-if="cont.showContent" v-html="cont.content">
+
+                </p>
+                <button class="border bg-red-900 cursor-pointer">Ocultar ou mostrar</button>
+            </div>
+
+        </div>
+    </div>
+</body>
+
+<script>
+    new Vue({
+        el: '#app',
+            data: {
+                conteudo: '<span>Conteudo gerado dentro do JS</span>',
+                dados: [
+                    {
+                        id: 1,
+                        showContent: true,
+                        content: '<span>Jeus me desculpe por ser tão frio</span>',
+                    }
+                ],
+            },
+    })
+</script>
+</html>
