@@ -17,7 +17,7 @@ function buscaBinaria(lista, target) {
     while(inicio <= fim){
         let meio = Math.floor((inicio + fim)/2);
 
-        if (lista[meio] ===target){
+        if (lista[meio] === target){
             return meio;
         }else if (lista[meio] < target){
             inicio = meio + 1;
@@ -27,12 +27,13 @@ function buscaBinaria(lista, target) {
     }
     return -1;
 }
+
 const listaOrdenada = quicksort(listaDeNumeros);
 console.log(listaOrdenada.join(" "));
 console.log(buscaBinaria(listaOrdenada, 29));
 
 //Teste de tempo
-const arrGrande = geraArrayOrdenado(1000000)
+const arrGrande = geraArrayOrdenado(1000000);
 const valorProcurado = 999998;
 
 const inicio = performance.now();
