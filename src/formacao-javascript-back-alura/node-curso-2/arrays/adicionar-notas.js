@@ -4,4 +4,4 @@ let nota = 9
 
 notas.push(nota);
 
-console.log(notas)
+console.log(notas);
