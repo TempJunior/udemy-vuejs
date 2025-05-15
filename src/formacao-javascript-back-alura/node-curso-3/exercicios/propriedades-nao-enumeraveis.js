@@ -1,4 +1,4 @@
-const car = {
+export const car = {
     marca: 'Volks',
     modelo: 'Sedan',
     ano: 1992,
@@ -33,6 +33,10 @@ Object.defineProperty(car, 'placa',{
     enumerable: false,
 });
 
-for(const props in car) {
-    console.log(`${props}: ${car[props]}`);
-}
+// for(const props in car) {
+//     console.log(`${props}: ${car[props]}`);
+// }
+
+// const chaves = Object.keys(car);
+// console.log(chaves);
+// console.log(car.placa)
