@@ -2,12 +2,8 @@ const pessoa = {
     nome: 'Junior Oliveira',
     notas: [10,5,7,9],
     calcularMedias: function (){
-        let soma = 0;
-        for (let i = 0; i < this.notas.length; i++){
-            soma += this.notas[i]
-        }
-        let media = soma / this.notas.length;
-        return media.toFixed(2);
+        const soma = this.notas.reduce((acumulador, notaAtual) => acumulador + notaAtual, 0);
+        return (soma / this.notas.length).toFixed(2);
     },
     classificarDesempenho: function (){
         const media = parseFloat(this.calcularMedias());
